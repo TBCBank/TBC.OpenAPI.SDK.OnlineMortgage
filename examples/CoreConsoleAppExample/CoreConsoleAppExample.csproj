@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\TBC.OpenAPI.SDK.OnlineInstallments\TBC.OpenAPI.SDK.OnlineInstallments.csproj" />
+    <ProjectReference Include="..\..\src\TBC.OpenAPI.SDK.OnlineMortgage\TBC.OpenAPI.SDK.OnlineMortgage.csproj" />
   </ItemGroup>
 
 </Project>

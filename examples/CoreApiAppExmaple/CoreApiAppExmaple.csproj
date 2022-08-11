@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -11,7 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\TBC.OpenAPI.SDK.OnlineInstallments\TBC.OpenAPI.SDK.OnlineInstallments.csproj" />
+    <ProjectReference Include="..\..\src\TBC.OpenAPI.SDK.OnlineMortgage\TBC.OpenAPI.SDK.OnlineMortgage.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="TBC.OpenAPI.SDK.OnlineMortgage">
+      <HintPath>..\..\src\TBC.OpenAPI.SDK.OnlineMortgage\bin\Debug\net6.0\ref\TBC.OpenAPI.SDK.OnlineMortgage.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

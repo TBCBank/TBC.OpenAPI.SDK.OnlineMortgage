@@ -3,28 +3,35 @@
 
 
 using TBC.OpenAPI.SDK.Core;
-using TBC.OpenAPI.SDK.OnlineInstallments;
-using TBC.OpenAPI.SDK.OnlineInstallments.Extensions;
-using TBC.OpenAPI.SDK.OnlineInstallments.Models.Requests;
+using TBC.OpenAPI.SDK.OnlineMortgage;
+using TBC.OpenAPI.SDK.OnlineMortgage.Extensions;
+using TBC.OpenAPI.SDK.OnlineMortgage.Models.Requests;
 
 var factory = new OpenApiClientFactoryBuilder()
-    .AddOnlineInstallmentsClient(new OnlineInstallmentsClientOptions
+    .AddOnlineMortgageClient(new OnlineMortgageClientOptions
     {
-        BaseUrl = "https://test-api.tbcbank.ge/v1/online-installments/",
+        BaseUrl = "https://test-api.tbcbank.ge/v1/online-mortgages/",
         ApiKey = "{apikey}",
         ClientSecret = "{clientSecret}"
     })
     .Build();
 
 
-var client = factory.GetOnlineInstallmentsClient();
+var client = factory.GetOnlineMortgageClient();
 
-var result = client.GetApplicationStatus(new GetApplicationStatusRequest 
+var result = client.InitiateOnlineMortgageLeads(new InitiateMortgageLeadsRequest 
 {
-    MerchantKey = "aeb32470-4999-4f05-b271-b393325c8d8f",
-    SessionId = "3293a41f-1ad0-4542-968a-a8480495b2d6"
+    Url = "http://my.ge/myhome/ka/pr/10872462/iyideba-mshenebare-bina",
+    RealEstateCode = "FLAT",
+    CompanyCode = "M2",
+    OtherCompanyName = "",
+    PropertyPrice = "196200.00",
+    PropertyPriceCurrencyCode = "GEL",
+    DownPaymentAmount = 19620.00f,
+    DownPaymentAmountCurrencyCode = "GEL",
+    TermInMonths = 120
 }).GetAwaiter().GetResult();
 
-Console.WriteLine($"Result: {result.StatusId}");
+Console.WriteLine($"RedirectUrl: {result.RedirectUrl}, LeadId: { result.LeadId}");
 
 Console.ReadLine();

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TBC.OpenAPI.SDK.OnlineInstallments.Models.Requests
+namespace TBC.OpenAPI.SDK.OnlineMortgage.Models.Requests
 {
     public class TokenRequest
     {
         public string Grant_Type { get; set; } = "client_credentials";
-        public string Scope { get; set; } = "online_installments";
+        public string Scope { get; set; } = "online_morgage";
     }
 }

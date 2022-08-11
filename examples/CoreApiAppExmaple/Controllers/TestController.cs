@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using TBC.OpenAPI.SDK.OnlineInstallments.Interfaces;
-using TBC.OpenAPI.SDK.OnlineInstallments.Models.Requests;
-using TBC.OpenAPI.SDK.OnlineInstallments.Models.Responses;
+using System.Threading.Tasks;
+using TBC.OpenAPI.SDK.OnlineMortgage.Interfaces;
+using TBC.OpenAPI.SDK.OnlineMortgage.Models.Requests;
+using TBC.OpenAPI.SDK.OnlineMortgage.Models.Responses;
 
 namespace CoreApiAppExmaple.Controllers
 {
@@ -9,17 +10,17 @@ namespace CoreApiAppExmaple.Controllers
     [Route("[controller]")]
     public class TestController : ControllerBase
     {
-        private readonly IOnlineInstallmentsClient _onlineInstallmentsClient;
+        private readonly IOnlineMortgageClient _OnlineMortgageClient;
 
-        public TestController(IOnlineInstallmentsClient onlineInstallmentsClient)
+        public TestController(IOnlineMortgageClient OnlineMortgageClient)
         {
-            _onlineInstallmentsClient = onlineInstallmentsClient;
+            _OnlineMortgageClient = OnlineMortgageClient;
         }
 
         [HttpGet]
-        public async Task<ActionResult<GetApplicationStatusResponse>> GetApplicationStatus(GetApplicationStatusRequest model, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<InitiateMortgageLeadsResponce>> GetApplicationStatus(InitiateMortgageLeadsRequest model, CancellationToken cancellationToken = default)
         {
-            var result = await _onlineInstallmentsClient.GetApplicationStatus(model, cancellationToken);
+            var result = await _OnlineMortgageClient.InitiateOnlineMortgageLeads(model, cancellationToken);
 
             return Ok(result);
         }

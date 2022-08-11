@@ -1,12 +1,12 @@
-﻿# TBC.OpenAPI.SDK.OnlineInstallments
+﻿# TBC.OpenAPI.SDK.OnlineMortgage
 ​
-[![NuGet version (TBC.OpenAPI.SDK.OnlineInstallments)](https://img.shields.io/nuget/v/TBC.OpenAPI.SDK.OnlineInstallments.svg?label=TBC.OpenAPI.SDK.OnlineInstallments)](https://www.nuget.org/packages/TBC.OpenAPI.SDK.OnlineInstallments/) [![CI](https://github.com/TBCBank/TBC.OpenAPI.SDK.OnlineInstallments/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/TBCBank/TBC.OpenAPI.SDK.OnlineInstallments/actions/workflows/main.yml)\
+[![NuGet version (TBC.OpenAPI.SDK.OnlineMortgage)](https://img.shields.io/nuget/v/TBC.OpenAPI.SDK.OnlineMortgage.svg?label=TBC.OpenAPI.SDK.OnlineMortgage)](https://www.nuget.org/packages/TBC.OpenAPI.SDK.OnlineMortgage/) [![CI](https://github.com/TBCBank/TBC.OpenAPI.SDK.OnlineMortgage/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/TBCBank/TBC.OpenAPI.SDK.OnlineMortgage/actions/workflows/main.yml)\
 ​
-Online Installments SDKs for TBC OpenAPI
+Online Mortgage SDKs for TBC OpenAPI
 ​
-## Online Installments SDK
+## Online Mortgage SDK
 ​
-Repository contains the SDK for simplifying TBC Open API Online Installments API invocations on C# client application side.\
+Repository contains the SDK for simplifying TBC Open API Online Mortgage API invocations on C# client application side.\
 ​
 Library is written in the C # programming language and is compatible with .netstandard2.0 and .net6.0.
 ​
@@ -18,15 +18,15 @@ In order to use the SDK it is mandatory to have **apikey** from TBC Bank's OpenA
 ​
 ## .Net Core Usage
 ​
-First step is to configure appsettings.json file with Online Installments endpoint, TBC Portal **apikey** and ClientSecret\
+First step is to configure appsettings.json file with Online Mortgage endpoint, TBC Portal **apikey** and ClientSecret\
 ​
 appsettings.json
 ​
 ```json
 ​
-"OnlineInstallments": {
+"OnlineMortgage": {
 ​
-"BaseUrl": "https://tbcbank-test.apigee.net/v1/online-installments/",
+"BaseUrl": "https://tbcbank-test.apigee.net/v1/online-mortgage/",
 ​
 "ApiKey": "{apikey}",
 
@@ -36,29 +36,29 @@ appsettings.json
 ​
 ```
 ​
-Then add Online Installments client as an dependency injection\
+Then add Online Mortgage client as an dependency injection\
 ​
 Program.cs
 ​
 ```cs
 ​
-builder.Services.AddOnlineInstallmentsClient(builder.Configuration.GetSection("OnlineInstallments").Get<OnlineInstallmentsClientOptions>());
+builder.Services.AddOnlineMortgageClient(builder.Configuration.GetSection("OnlineMortgage").Get<OnlineMortgageClientOptions>());
 ​
 ```
 ​
-After two steps above, setup is done and  Online Installments client can be injected in any container class:
+After two steps above, setup is done and  Online Mortgage client can be injected in any container class:
 ​
 Injection example:
 ​
 ```cs
 ​
-private readonly IOnlineInstallmentsClient _onlineInstallmentsClient;
+private readonly IOnlineMortgageClient _OnlineMortgageClient;
 ​
-public TestController(IOnlineInstallmentsClient onlineInstallmentsClient)
+public TestController(IOnlineMortgageClient OnlineMortgageClient)
 ​
 {
 ​
-_onlineInstallmentsClient = onlineInstallmentsClient;
+_OnlineMortgageClient = OnlineMortgageClient;
 ​
 }
 ​
@@ -67,35 +67,37 @@ _onlineInstallmentsClient = onlineInstallmentsClient;
 Api invocation example:
 ​
 ```cs
-​
-var result = await _onlineInstallmentsClient.GetApplicationStatus(
-​
-new GetApplicationStatusRequest
-            {
-                MerchantKey = "aeb32470-4999-4f05-b271-b393325c8d8f",
-                SessionId = "3293a41f-1ad0-4542-968a-a8480495b2d6"
-            },
-​
-cancellationToken
-​
-);
+
+
+var result = await _OnlineMortgageClient.InitiateOnlineMortgageLeads(new InitiateMortgageLeadsRequest 
+{
+    Url = "http://my.ge/myhome/ka/pr/10872462/iyideba-mshenebare-bina",
+    RealEstateCode = "FLAT",
+    CompanyCode = "M2",
+    OtherCompanyName = "",
+    PropertyPrice = "196200.00",
+    PropertyPriceCurrencyCode = "GEL",
+    DownPaymentAmount = 19620.00f,
+    DownPaymentAmountCurrencyCode = "GEL",
+    TermInMonths = 120
+}).GetAwaiter().GetResult();
 ​
 ```
 ​
 ## NetFramework Usage
 ​
-First step is to configure appsettings.json file with Online Installments endpoint, TBC Portal **apikey** and ClientSecret\
+First step is to configure appsettings.json file with Online Mortgage endpoint, TBC Portal **apikey** and ClientSecret\
 ​
 Web.config
 ​
 ```xml
 
 ​
-<add key="OnlineInstallmentsUrl" value="https://tbcbank-test.apigee.net/v1/online-installments/" />
+<add key="OnlineMortgageUrl" value="https://tbcbank-test.apigee.net/v1/online-mortgage/" />
 ​
-<add key="OnlineInstallmentsKey" value="{apikey}" />
+<add key="OnlineMortgageKey" value="{apikey}" />
 
-<add key="OnlineInstallmentsClientSecret" value="{clientSecret}" />
+<add key="OnlineMortgageClientSecret" value="{clientSecret}" />
 ​
 ```
 ​
@@ -107,15 +109,15 @@ Global.asax
 ​
 new OpenApiClientFactoryBuilder()
 ​
-.AddOnlineInstallmentsClient(new OnlineInstallmentsClientOptions
+.AddOnlineMortgageClient(new OnlineMortgageClientOptions
 ​
 {
 ​
-BaseUrl = ConfigurationManager.AppSettings["OnlineInstallmentsUrl"],
+BaseUrl = ConfigurationManager.AppSettings["OnlineMortgageUrl"],
 ​
-ApiKey = ConfigurationManager.AppSettings["OnlineInstallmentsKey"],
+ApiKey = ConfigurationManager.AppSettings["OnlineMortgageKey"],
 
-ApiKey = ConfigurationManager.AppSettings["OnlineInstallmentsClientSecret"]
+ApiKey = ConfigurationManager.AppSettings["OnlineMortgageClientSecret"]
 ​
 })
 ​
@@ -123,15 +125,15 @@ ApiKey = ConfigurationManager.AppSettings["OnlineInstallmentsClientSecret"]
 ​
 ```
 ​
-This code reads config parameters and then creates singleton OpenApiClientFactory, which is used to instantiate Online Installments client.\
+This code reads config parameters and then creates singleton OpenApiClientFactory, which is used to instantiate Online Mortgage client.\
 ​
-OnlineInstallmentsClient class instantiation and invocation example:
+OnlineMortgageClient class instantiation and invocation example:
 ​
 ```cs
 ​
-var onlineInstallmentsClient = OpenApiClientFactory.Instance.GetOnlineInstallmentsClient();
+var OnlineMortgageClient = OpenApiClientFactory.Instance.GetOnlineMortgageClient();
 ​
-var result = await onlineInstallmentsClient.GetApplicationStatus(new GetApplicationStatusRequest
+var result = await OnlineMortgageClient.GetApplicationStatus(new GetApplicationStatusRequest
             {
                 MerchantKey = "aeb32470-4999-4f05-b271-b393325c8d8f",
                 SessionId = "3293a41f-1ad0-4542-968a-a8480495b2d6"
@@ -143,10 +145,10 @@ For more details see examples in repo:
 ​
 ​
 
-[CoreApiAppExmaple](https://github.com/TBCBank/TBC.OpenAPI.SDK.OnlineInstallments/tree/master/examples/CoreApiAppExmaple)
+[CoreApiAppExmaple](https://github.com/TBCBank/TBC.OpenAPI.SDK.OnlineMortgage/tree/master/examples/CoreApiAppExmaple)
 ​
 
-[CoreConsoleAppExample](https://github.com/TBCBank/TBC.OpenAPI.SDK.OnlineInstallments/tree/master/examples/CoreConsoleAppExample)
+[CoreConsoleAppExample](https://github.com/TBCBank/TBC.OpenAPI.SDK.OnlineMortgage/tree/master/examples/CoreConsoleAppExample)
 ​
 
-[NetFrameworkExample](https://github.com/TBCBank/TBC.OpenAPI.SDK.OnlineInstallments/tree/master/examples/NetFrameworkExample)
+[NetFrameworkExample](https://github.com/TBCBank/TBC.OpenAPI.SDK.OnlineMortgage/tree/master/examples/NetFrameworkExample)

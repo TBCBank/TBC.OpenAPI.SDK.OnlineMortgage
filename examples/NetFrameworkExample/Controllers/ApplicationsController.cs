@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
-using TBC.OpenAPI.SDK.OnlineInstallments.Models.Requests;
+using TBC.OpenAPI.SDK.OnlineMortgage.Models.Requests;
 using TBC.OpenAPI.SDK.Core;
-using TBC.OpenAPI.SDK.OnlineInstallments.Extensions;
+using TBC.OpenAPI.SDK.OnlineMortgage.Extensions;
 
 namespace NetFrameworkExample.Controllers
 {
@@ -16,12 +16,19 @@ namespace NetFrameworkExample.Controllers
 
         public async Task<IHttpActionResult> Get()
         {
-            var onlineInstallmentsClient = OpenApiClientFactory.Instance.GetOnlineInstallmentsClient();
+            var OnlineMortgageClient = OpenApiClientFactory.Instance.GetOnlineMortgageClient();
 
-            var result = await onlineInstallmentsClient.GetApplicationStatus(new GetApplicationStatusRequest
+            var result = await OnlineMortgageClient.InitiateOnlineMortgageLeads(new InitiateMortgageLeadsRequest
             {
-                MerchantKey = "aeb32470-4999-4f05-b271-b393325c8d8f",
-                SessionId = "3293a41f-1ad0-4542-968a-a8480495b2d6"
+                Url = "http://my.ge/myhome/ka/pr/10872462/iyideba-mshenebare-bina",
+                RealEstateCode = "FLAT",
+                CompanyCode = "M2",
+                OtherCompanyName = "",
+                PropertyPrice = "196200.00",
+                PropertyPriceCurrencyCode = "GEL",
+                DownPaymentAmount = 19620.00f,
+                DownPaymentAmountCurrencyCode = "GEL",
+                TermInMonths = 120
             });
 
             return Ok(result);

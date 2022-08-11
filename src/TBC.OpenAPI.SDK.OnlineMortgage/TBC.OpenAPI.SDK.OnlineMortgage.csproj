@@ -4,9 +4,9 @@
 		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<IsPackable>true</IsPackable>
-		<PackageId>TBC.OpenAPI.SDK.OnlineInstallments</PackageId>
-		<Title>TBC Open API OnlineInstallments</Title>
-		<Description>TBC Open API online installments client SDKs</Description>
+		<PackageId>TBC.OpenAPI.SDK.OnlineMortgage</PackageId>
+		<Title>TBC Open API OnlineMortgage</Title>
+		<Description>TBC Open API online mortgage client SDKs</Description>
 		<Copyright>TBC Bank</Copyright>
 		<PackageTags>OpenAPI;SDK;TBC</PackageTags>
 		<Company>TBC Bank</Company>
@@ -14,7 +14,7 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageProjectUrl>https://developers.tbcbank.ge</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/TBCBank/TBC.OpenAPI.SDK.OnlineInstallments</RepositoryUrl>
+		<RepositoryUrl>https://github.com/TBCBank/TBC.OpenAPI.SDK.OnlineMortgage</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryBranch>master</RepositoryBranch>
 		<IncludeContentInPack>true</IncludeContentInPack>

@@ -5,11 +5,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
-using System.Web.Optimization;
 using System.Web.Routing;
 using TBC.OpenAPI.SDK.Core;
-using TBC.OpenAPI.SDK.OnlineInstallments;
-using TBC.OpenAPI.SDK.OnlineInstallments.Extensions;
+using TBC.OpenAPI.SDK.OnlineMortgage;
+using TBC.OpenAPI.SDK.OnlineMortgage.Extensions;
 
 namespace NetFrameworkExample
 {
@@ -23,11 +22,12 @@ namespace NetFrameworkExample
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             new OpenApiClientFactoryBuilder()
-                .AddOnlineInstallmentsClient(new OnlineInstallmentsClientOptions
+                .AddOnlineMortgageClient(new OnlineMortgageClientOptions
                 {
-                    BaseUrl = ConfigurationManager.AppSettings["OnlineInstallmentsUrl"],
-                    ApiKey = ConfigurationManager.AppSettings["OnlineInstallmentsKey"],
-                    ClientSecret = ConfigurationManager.AppSettings["OnlineInstallmentsClientSecret"]
+                    
+                    BaseUrl = ConfigurationManager.AppSettings["OnlineMortgageUrl"],
+                    ApiKey = ConfigurationManager.AppSettings["OnlineMortgageKey"],
+                    ClientSecret = ConfigurationManager.AppSettings["OnlineMortgageClientSecret"]
                 })
                 .Build();
         }

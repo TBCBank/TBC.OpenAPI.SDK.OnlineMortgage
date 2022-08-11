@@ -8,13 +8,13 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using TBC.OpenAPI.SDK.OnlineInstallments.Models.Requests;
-using TBC.OpenAPI.SDK.OnlineInstallments.Models.Responses;
+using TBC.OpenAPI.SDK.OnlineMortgage.Models.Requests;
+using TBC.OpenAPI.SDK.OnlineMortgage.Models.Responses;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
 using WireMock.Server;
 
-namespace TBC.OpenAPI.SDK.OnlineInstallments.Tests
+namespace TBC.OpenAPI.SDK.OnlineMortgage.Tests
 {
     public class HttpHelperMocks
     {
@@ -22,7 +22,7 @@ namespace TBC.OpenAPI.SDK.OnlineInstallments.Tests
         private readonly HttpClient _httpClient;
 
         public HttpClient HttpClient => _httpClient;
-        public Mock<IOptions<OnlineInstallmentsClientOptions>> OptionsMock = new Mock<IOptions<OnlineInstallmentsClientOptions>>();
+        public Mock<IOptions<OnlineMortgageClientOptions>> OptionsMock = new Mock<IOptions<OnlineMortgageClientOptions>>();
 
         public HttpHelperMocks()
         {
@@ -41,7 +41,7 @@ namespace TBC.OpenAPI.SDK.OnlineInstallments.Tests
             #region OkResults
 
             OptionsMock.Setup(x => x.Value)
-                .Returns(new OnlineInstallmentsClientOptions
+                .Returns(new OnlineMortgageClientOptions
                 {
                     ApiKey = Guid.NewGuid().ToString(),
                     BaseUrl = "//BaseUrl",
@@ -51,108 +51,34 @@ namespace TBC.OpenAPI.SDK.OnlineInstallments.Tests
             _mockServer
                 .Given(
                     Request.Create()
-                    .WithPath("/applications")
+                    .WithPath("/v1/online-mortgages/leads")
                     .UsingMethod("POST")
                 )
                 .RespondWith(
                     Response.Create()
                         .WithStatusCode(200)
-                        .WithBodyAsJson(new InitiateInstallmentResponce
+                        .WithBodyAsJson(new InitiateMortgageLeadsResponce
                         {
-                            SessionId = Guid.NewGuid().ToString(),
+                            LeadId = Guid.NewGuid().ToString(),
+                            RedirectUrl = "//SomeUrl"
                         })
                 );
+
+
 
             _mockServer
                 .Given(
                     Request.Create()
-                    .WithPath("/applications/181b867a-1feb-42f9-be34-e8de29810f13/confirm")
-                    .UsingMethod("POST")
-
-                )
-                .RespondWith(
-                    Response.Create()
-                        .WithStatusCode(200)
-                        .WithBodyAsJson(new ConfirmApplicationResponse
-                        {
-                            Id = Guid.NewGuid().ToString()
-                        })
-                );
-
-            _mockServer
-                .Given(
-                    Request.Create()
-                    .WithPath("/applications/181b867a-1feb-42f9-be34-e8de29810f13/status")
-                    .UsingMethod("GET")
-
-                )
-                .RespondWith(
-                    Response.Create()
-                        .WithStatusCode(200)
-                        .WithBodyAsJson(new GetApplicationStatusResponse
-                        {
-                            Amount = 1,
-                            ContributionAmount = "1",
-                            Description = "Test description",
-                            StatusId = ApplicationStatusEnum.Approved
-                        })
-                );
-
-            _mockServer
-                .Given(
-                    Request.Create()
-                    .WithPath("/applications/181b867a-1feb-42f9-be34-e8de29810f13/cancel")
-                    .UsingMethod("POST")
-
-                )
-                .RespondWith(
-                    Response.Create()
-                        .WithStatusCode(200)
-                        .WithBodyAsJson(new CancelApplicationResponse
-                        {
-                            Id = Guid.NewGuid().ToString()
-                        })
-                );
-
-            _mockServer
-                .Given(
-                    Request.Create()
-                    .WithPath("/merchant/applications/status-changes")
-                    .UsingMethod("GET")
-
-                )
-                .RespondWith(
-                    Response.Create()
-                        .WithStatusCode(200)
-                        .WithBodyAsJson(new MerchantApplicationStatusesResponse
-                        {
-                            StatusChanges = new List<StatusChange>()
-                            {
-                                new StatusChange
-                                {
-                                    StatusId = 1,
-                                    SessionId ="aeb32470-4999-4f05-b271-b393325c8d8f",
-                                    ChangeDate = new DateTime(1991,07,22).ToString(),
-                                    StatusDescription = "Test description"
-                                }
-                            },
-
-                            SynchronizationRequestId = "3293a41f-1ad0-4542-968a-a8480495b2d6",
-                            TotalCount = 1
-                        })
-                );
-
-            _mockServer
-                .Given(
-                    Request.Create()
-                    .WithPath("/merchant/applications/status-changes-sync")
+                    .WithPath("/v1/online-mortgages/short-leads")
                     .UsingMethod("POST")
                 )
                 .RespondWith(
                     Response.Create()
                         .WithStatusCode(200)
-                        .WithBodyAsJson(new MerchantApplicationStatusesResponse
-                        { })
+                        .WithBodyAsJson(new InitiateMortgageShortLeadsResponce
+                        {
+                            LeadId = Guid.NewGuid().ToString()
+                        })
                 );
 
             _mockServer
@@ -173,6 +99,8 @@ namespace TBC.OpenAPI.SDK.OnlineInstallments.Tests
                             Token_Type = "Test Type"
                         })
                 );
+
+
 
             #endregion
 

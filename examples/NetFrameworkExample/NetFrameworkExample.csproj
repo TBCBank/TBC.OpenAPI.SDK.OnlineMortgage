@@ -156,9 +156,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\TBC.OpenAPI.SDK.OnlineInstallments\TBC.OpenAPI.SDK.OnlineInstallments.csproj">
-      <Project>{a10b4f21-4f48-4050-ad60-125aacdbfa08}</Project>
-      <Name>TBC.OpenAPI.SDK.OnlineInstallments</Name>
+    <ProjectReference Include="..\..\src\TBC.OpenAPI.SDK.OnlineMortgage\TBC.OpenAPI.SDK.OnlineMortgage.csproj">
+      <Project>{207404a3-4af7-49e5-9639-9c318f29df39}</Project>
+      <Name>TBC.OpenAPI.SDK.OnlineMortgage</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

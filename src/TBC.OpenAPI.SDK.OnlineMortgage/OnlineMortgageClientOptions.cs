@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TBC.OpenAPI.SDK.Core;
 
-namespace TBC.OpenAPI.SDK.OnlineInstallments.Models.Responses
+namespace TBC.OpenAPI.SDK.OnlineMortgage
 {
-    public class CancelApplicationResponse : ResponceBaseWithId
+    public class OnlineMortgageClientOptions : BasicAuthOptions
     {
     }
 }

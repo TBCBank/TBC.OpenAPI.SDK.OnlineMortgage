@@ -58,5 +58,5 @@ jobs:
     - name: Test
       run: | 
         dotnet test -c Release --no-restore --no-build --verbosity normal
-    - name: Push TBC.OpenAPI.SDK.OnlineInstallments
-      run: nuget push "src\TBC.OpenAPI.SDK.OnlineInstallments\bin\Release\*.nupkg" -NonInteractive -SkipDuplicate -Source "https://api.nuget.org/v3/index.json" -NoSymbols -ForceEnglishOutput
+    - name: Push TBC.OpenAPI.SDK.OnlineMortgage
+      run: nuget push "src\TBC.OpenAPI.SDK.OnlineMortgage\bin\Release\*.nupkg" -NonInteractive -SkipDuplicate -Source "https://api.nuget.org/v3/index.json" -NoSymbols -ForceEnglishOutput

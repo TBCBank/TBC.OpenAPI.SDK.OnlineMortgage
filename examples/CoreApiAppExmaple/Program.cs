@@ -1,5 +1,5 @@
-using TBC.OpenAPI.SDK.OnlineInstallments;
-using TBC.OpenAPI.SDK.OnlineInstallments.Extensions;
+using TBC.OpenAPI.SDK.OnlineMortgage;
+using TBC.OpenAPI.SDK.OnlineMortgage.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddOnlineInstallmentsClient(builder.Configuration.GetSection("OnlineInstallments").Get<OnlineInstallmentsClientOptions>());
+builder.Services.AddOnlineMortgageClient(builder.Configuration.GetSection("OnlineMortgage").Get<OnlineMortgageClientOptions>());
 
 var app = builder.Build();
 
