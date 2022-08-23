@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TBC.OpenAPI.SDK.OnlineMortgage.Models.Requests
 {
-    public class TokenRequest
+    public static class TokenRequest
     {
-        public string Grant_Type { get; set; } = "client_credentials";
-        public string Scope { get; set; } = "online_morgage";
+        public static string Grant_Type { get; set; } = "client_credentials";
+        public static string Scope { get; set; } = "online_mortgages";
     }
 }

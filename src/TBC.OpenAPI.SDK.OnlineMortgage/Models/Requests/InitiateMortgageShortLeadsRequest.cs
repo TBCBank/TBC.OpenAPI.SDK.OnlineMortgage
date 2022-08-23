@@ -15,7 +15,7 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage.Models.Requests
         [Required]
         public string Url { get; set; }
         public string RealEstateCode { get; set; }
-        public string PropertyPrice { get; set; }
+        public decimal PropertyPrice { get; set; }
         public string PropertyPriceCurrencyCode { get; set; }
         public int TermInMonths { get; set; }
         public decimal MonthlyIncome { get; set; }

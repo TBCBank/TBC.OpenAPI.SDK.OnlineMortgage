@@ -17,10 +17,17 @@ namespace CoreApiAppExmaple.Controllers
             _OnlineMortgageClient = OnlineMortgageClient;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<InitiateMortgageLeadsResponce>> GetApplicationStatus(InitiateMortgageLeadsRequest model, CancellationToken cancellationToken = default)
+        [HttpPost(nameof(InitiateOnlineMortgageLeads))]
+        public async Task<ActionResult<InitiateMortgageLeadsResponce>> InitiateOnlineMortgageLeads(InitiateMortgageLeadsRequest model, CancellationToken cancellationToken = default)
         {
             var result = await _OnlineMortgageClient.InitiateOnlineMortgageLeads(model, cancellationToken);
+
+            return Ok(result);
+        }
+        [HttpPost(nameof(InitiateOnlineMortgageShortLeads))]
+        public async Task<ActionResult<InitiateMortgageLeadsResponce>> InitiateOnlineMortgageShortLeads(InitiateMortgageShortLeadsRequest model, CancellationToken cancellationToken = default)
+        {
+            var result = await _OnlineMortgageClient.InitiateOnlineMortgageShortLeads(model, cancellationToken);
 
             return Ok(result);
         }

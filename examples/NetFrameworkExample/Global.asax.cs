@@ -24,7 +24,6 @@ namespace NetFrameworkExample
             new OpenApiClientFactoryBuilder()
                 .AddOnlineMortgageClient(new OnlineMortgageClientOptions
                 {
-                    
                     BaseUrl = ConfigurationManager.AppSettings["OnlineMortgageUrl"],
                     ApiKey = ConfigurationManager.AppSettings["OnlineMortgageKey"],
                     ClientSecret = ConfigurationManager.AppSettings["OnlineMortgageClientSecret"]

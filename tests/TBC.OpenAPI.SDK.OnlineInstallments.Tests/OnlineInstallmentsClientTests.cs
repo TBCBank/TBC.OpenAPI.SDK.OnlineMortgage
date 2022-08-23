@@ -26,7 +26,7 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage.Tests
             mock.Setup(x => x.CreateClient(typeof(OnlineMortgageClient).FullName)).Returns(_helperMocks.HttpClient);
             var http = new HttpHelper<OnlineMortgageClient>(mock.Object);
 
-            _client = new OnlineMortgageClient(http, _helperMocks.OptionsMock.Object);
+            _client = new OnlineMortgageClient(http);
         }
 
 
@@ -41,7 +41,7 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage.Tests
                 RealEstateCode = "FLAT",
                 CompanyCode = "M2",
                 OtherCompanyName = "",
-                PropertyPrice = "196200.00",
+                PropertyPrice = 196200.00m,
                 PropertyPriceCurrencyCode = "GEL",
                 DownPaymentAmount = 196200.00f,
                 DownPaymentAmountCurrencyCode = "GEL",
@@ -70,7 +70,7 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage.Tests
                 PersonalNo = "12345678911",
                 Url = "//SomeUrl",
                 RealEstateCode = "FLAT",
-                PropertyPrice = "196200.00",
+                PropertyPrice = 196200.00m,
                 PropertyPriceCurrencyCode = "GEL",
                 TermInMonths = 120
             });
