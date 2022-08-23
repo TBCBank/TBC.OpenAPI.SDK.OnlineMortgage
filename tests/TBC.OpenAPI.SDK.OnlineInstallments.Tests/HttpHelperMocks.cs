@@ -93,7 +93,7 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage.Tests
                         .WithBodyAsJson(new TokenResponse
                         {
                             Access_Token = Guid.NewGuid().ToString(),
-                            Expires_In = DateTime.Now.ToString(),
+                            Expires_In = 100000,
                             Issued_At = DateTime.Now.ToString(),
                             Scope = "Test Scope",
                             Token_Type = "Test Type"
