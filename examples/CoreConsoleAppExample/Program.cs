@@ -10,7 +10,7 @@ using TBC.OpenAPI.SDK.OnlineMortgage.Models.Requests;
 var factory = new OpenApiClientFactoryBuilder()
     .AddOnlineMortgageClient(new OnlineMortgageClientOptions
     {
-        BaseUrl = "https://test-api.tbcbank.ge/v1/online-mortgages/",
+        BaseUrl = "https://test-api.tbcbank.ge/",
         ApiKey = "{apikey}",
         ClientSecret = "{clientSecret}"
     })
@@ -25,7 +25,7 @@ var result = client.InitiateOnlineMortgageLeads(new InitiateMortgageLeadsRequest
     RealEstateCode = "FLAT",
     CompanyCode = "M2",
     OtherCompanyName = "",
-    PropertyPrice = "196200.00",
+    PropertyPrice = 196200.00m,
     PropertyPriceCurrencyCode = "GEL",
     DownPaymentAmount = 19620.00f,
     DownPaymentAmountCurrencyCode = "GEL",

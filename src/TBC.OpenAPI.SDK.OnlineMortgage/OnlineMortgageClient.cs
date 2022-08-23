@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,10 +24,9 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage
 
         private static TokenResponse token { get; set; } = new TokenResponse();
 
-        public OnlineMortgageClient(IHttpHelper<OnlineMortgageClient> http, IOptions<OnlineMortgageClientOptions> options)
+        public OnlineMortgageClient(IHttpHelper<OnlineMortgageClient> http)
         {
             _http = http;
-            _options = options.Value;
             UpdateToken(CancellationToken.None);
         }
 
@@ -76,15 +77,15 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage
             string path, QueryParamCollection query, HeaderParamCollection headers, CancellationToken cancellationToken)
         {
             headers = headers ?? new HeaderParamCollection();
-            headers.Add("Authorization", token.Access_Token);
+            headers.Add("Authorization", "Bearer " + token.Access_Token);
 
             ApiResponse<TResult> resp = await fn(path, query, headers, cancellationToken)
                 .ConfigureAwait(false);
 
-            if (resp?.Problem?.Code == "401")
+            if (resp?.Problem?.Status == (int)HttpStatusCode.Unauthorized)
             {
                 UpdateToken(cancellationToken);
-                headers["Authorization"] = token.Access_Token;
+                headers["Authorization"] = "Bearer " + token.Access_Token;
                 resp = await fn(path, query, headers, cancellationToken)
                     .ConfigureAwait(false);
             }
@@ -99,15 +100,15 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage
         {
 
             headers = headers ?? new HeaderParamCollection();
-            headers.Add("Authorization", token.Access_Token);
+            headers.Add("Authorization", "Bearer " + token.Access_Token);
 
             ApiResponse<TResult> resp = await fn(path, data, query, headers, cancellationToken)
                 .ConfigureAwait(false);
 
-            if (resp?.Problem?.Code == "401")
+            if (resp?.Problem?.Status == (int)HttpStatusCode.Unauthorized)
             {
                 UpdateToken(cancellationToken);
-                headers["Authorization"] = token.Access_Token;
+                headers["Authorization"] = "Bearer " + token.Access_Token;
                 resp = await fn(path, data, query, headers, cancellationToken)
                     .ConfigureAwait(false);
             }
@@ -117,16 +118,17 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage
 
         }
 
-        private void UpdateToken(CancellationToken cancellationToken)
+        private async Task UpdateToken(CancellationToken cancellationToken)
         {
-            HeaderParamCollection headers = new HeaderParamCollection
-            {
-                {"client_secret", $"{_options.ClientSecret}"}
+            var data = new UrlFormCollection 
+            { 
+                {"grant_type",TokenRequest.Grant_Type },
+                {"scope",TokenRequest.Scope}
             };
 
 
             var responce = Task.Run(() =>
-           _http.PostJsonAsync<TokenRequest, TokenResponse>("/oauth/token", new TokenRequest(), null, headers, cancellationToken)
+           _http.PostUrlFormAsync<TokenResponse>("/oauth/token", data,  cancellationToken)
            ).Result;
 
             if (!responce.IsSuccess)

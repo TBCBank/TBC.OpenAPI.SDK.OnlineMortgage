@@ -10,7 +10,7 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage.Models.Requests
         public string RealEstateCode { get; set; }
         public string CompanyCode { get; set; }
         public string OtherCompanyName { get; set; }
-        public string PropertyPrice { get; set; }
+        public decimal PropertyPrice { get; set; }
         public string PropertyPriceCurrencyCode { get; set; }
         public float DownPaymentAmount { get; set; }
         public string DownPaymentAmountCurrencyCode { get; set; }

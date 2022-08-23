@@ -12,6 +12,6 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage.Models.Responses
         public string Token_Type { get; set; }
         public string Scope { get; set; }
         public string Issued_At { get; set; }
-        public string Expires_In { get; set; }
+        public int Expires_In { get; set; }
     }
 }

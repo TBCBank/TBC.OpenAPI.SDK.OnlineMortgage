@@ -14,7 +14,7 @@ namespace NetFrameworkExample.Controllers
     public class ApplicationsController : ApiController
     {
 
-        public async Task<IHttpActionResult> Get()
+        public async Task<IHttpActionResult> InitiateOnlineMortgageLeads()
         {
             var OnlineMortgageClient = OpenApiClientFactory.Instance.GetOnlineMortgageClient();
 
@@ -24,7 +24,7 @@ namespace NetFrameworkExample.Controllers
                 RealEstateCode = "FLAT",
                 CompanyCode = "M2",
                 OtherCompanyName = "",
-                PropertyPrice = "196200.00",
+                PropertyPrice = 196200.00m,
                 PropertyPriceCurrencyCode = "GEL",
                 DownPaymentAmount = 19620.00f,
                 DownPaymentAmountCurrencyCode = "GEL",
