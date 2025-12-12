@@ -1,14 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using TBC.OpenAPI.SDK.OnlineMortgage.Models.Requests;
 using TBC.OpenAPI.SDK.OnlineMortgage.Models.Responses;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
@@ -30,11 +23,8 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage.Tests
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri($"{_mockServer.Urls[0]}/");
 
-
-
             AddMocks();
         }
-
 
         private void AddMocks()
         {
@@ -57,14 +47,12 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage.Tests
                 .RespondWith(
                     Response.Create()
                         .WithStatusCode(200)
-                        .WithBodyAsJson(new InitiateMortgageLeadsResponce
+                        .WithBodyAsJson(new InitiateMortgageLeadsResponse
                         {
                             LeadId = Guid.NewGuid().ToString(),
                             RedirectUrl = "//SomeUrl"
                         })
                 );
-
-
 
             _mockServer
                 .Given(
@@ -75,7 +63,7 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage.Tests
                 .RespondWith(
                     Response.Create()
                         .WithStatusCode(200)
-                        .WithBodyAsJson(new InitiateMortgageShortLeadsResponce
+                        .WithBodyAsJson(new InitiateMortgageShortLeadsResponse
                         {
                             LeadId = Guid.NewGuid().ToString()
                         })
@@ -100,11 +88,7 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage.Tests
                         })
                 );
 
-
-
             #endregion
-
-
         }
     }
 }

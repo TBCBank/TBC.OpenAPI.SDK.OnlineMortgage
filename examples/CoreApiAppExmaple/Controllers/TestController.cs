@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using TBC.OpenAPI.SDK.OnlineMortgage.Interfaces;
 using TBC.OpenAPI.SDK.OnlineMortgage.Models.Requests;
 using TBC.OpenAPI.SDK.OnlineMortgage.Models.Responses;
@@ -18,14 +17,14 @@ namespace CoreApiAppExmaple.Controllers
         }
 
         [HttpPost(nameof(InitiateOnlineMortgageLeads))]
-        public async Task<ActionResult<InitiateMortgageLeadsResponce>> InitiateOnlineMortgageLeads(InitiateMortgageLeadsRequest model, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<InitiateMortgageLeadsResponse>> InitiateOnlineMortgageLeads(InitiateMortgageLeadsRequest model, CancellationToken cancellationToken = default)
         {
             var result = await _OnlineMortgageClient.InitiateOnlineMortgageLeads(model, cancellationToken);
 
             return Ok(result);
         }
         [HttpPost(nameof(InitiateOnlineMortgageShortLeads))]
-        public async Task<ActionResult<InitiateMortgageLeadsResponce>> InitiateOnlineMortgageShortLeads(InitiateMortgageShortLeadsRequest model, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<InitiateMortgageLeadsResponse>> InitiateOnlineMortgageShortLeads(InitiateMortgageShortLeadsRequest model, CancellationToken cancellationToken = default)
         {
             var result = await _OnlineMortgageClient.InitiateOnlineMortgageShortLeads(model, cancellationToken);
 

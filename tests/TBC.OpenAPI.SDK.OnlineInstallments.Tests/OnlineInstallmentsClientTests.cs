@@ -1,16 +1,9 @@
-﻿using FluentAssertions;
-using FluentAssertions.Collections;
-using Moq;
+﻿using Moq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using TBC.OpenAPI.SDK.Core;
-using TBC.OpenAPI.SDK.Core.Exceptions;
 using TBC.OpenAPI.SDK.OnlineMortgage.Models.Requests;
-using TBC.OpenAPI.SDK.OnlineMortgage.Models.Responses;
 using Xunit;
 
 namespace TBC.OpenAPI.SDK.OnlineMortgage.Tests
@@ -29,11 +22,10 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage.Tests
             _client = new OnlineMortgageClient(http);
         }
 
-
         #region OkResults
 
         [Fact]
-        public async Task InitiateOnlineMortgageLeads_WhenResponceOk_ReturnsData()
+        public async Task InitiateOnlineMortgageLeads_WhenResponseOk_ReturnsData()
         {
             var result = await _client.InitiateOnlineMortgageLeads(new InitiateMortgageLeadsRequest
             {
@@ -48,15 +40,13 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage.Tests
                 TermInMonths = 120
             });
 
-
             Assert.NotNull(result);
             Assert.True(!string.IsNullOrEmpty(result.LeadId));
             Assert.True(!string.IsNullOrEmpty(result.RedirectUrl));
         }
 
-
         [Fact]
-        public async Task InitiateOnlineMortgageShortLeads_WhenResponceOk_ReturnsData()
+        public async Task InitiateOnlineMortgageShortLeads_WhenResponseOk_ReturnsData()
         {
             var result = await _client.InitiateOnlineMortgageShortLeads(new InitiateMortgageShortLeadsRequest
             {
@@ -75,14 +65,10 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage.Tests
                 TermInMonths = 120
             });
 
-
             Assert.NotNull(result);
             Assert.True(!string.IsNullOrEmpty(result.LeadId));
         }
 
-
         #endregion
-
-
     }
 }

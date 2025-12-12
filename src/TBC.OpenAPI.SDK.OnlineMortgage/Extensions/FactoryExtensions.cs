@@ -1,6 +1,4 @@
-﻿using System;
-using System.Net.Http;
-using TBC.OpenAPI.SDK.Core;
+﻿using TBC.OpenAPI.SDK.Core;
 using TBC.OpenAPI.SDK.OnlineMortgage.Interfaces;
 
 namespace TBC.OpenAPI.SDK.OnlineMortgage.Extensions
@@ -20,6 +18,5 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage.Extensions
 
         public static IOnlineMortgageClient GetOnlineMortgageClient(this OpenApiClientFactory factory) =>
             factory.GetOpenApiClient<IOnlineMortgageClient>();
-
     }
 }
