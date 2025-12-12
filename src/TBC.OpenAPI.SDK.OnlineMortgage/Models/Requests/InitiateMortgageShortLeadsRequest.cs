@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace TBC.OpenAPI.SDK.OnlineMortgage.Models.Requests
 {
@@ -23,5 +20,4 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage.Models.Requests
         [MaxLength(1200)]
         public string Comment { get; set; }
     }
-
 }

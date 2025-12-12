@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TBC.OpenAPI.SDK.OnlineMortgage.Models.Requests
+﻿namespace TBC.OpenAPI.SDK.OnlineMortgage.Models.Requests
 {
     public class InitiateMortgageLeadsRequest
     {
@@ -16,5 +12,4 @@ namespace TBC.OpenAPI.SDK.OnlineMortgage.Models.Requests
         public string DownPaymentAmountCurrencyCode { get; set; }
         public int TermInMonths { get; set; }
     }
-
 }

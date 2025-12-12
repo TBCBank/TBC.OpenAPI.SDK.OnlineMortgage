@@ -1,7 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-
-
 using TBC.OpenAPI.SDK.Core;
 using TBC.OpenAPI.SDK.OnlineMortgage;
 using TBC.OpenAPI.SDK.OnlineMortgage.Extensions;
@@ -15,7 +13,6 @@ var factory = new OpenApiClientFactoryBuilder()
         ClientSecret = "{clientSecret}"
     })
     .Build();
-
 
 var client = factory.GetOnlineMortgageClient();
 

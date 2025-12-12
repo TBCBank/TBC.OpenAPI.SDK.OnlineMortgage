@@ -1,10 +1,6 @@
-﻿using FluentValidation;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Net.Http;
+﻿using Microsoft.Extensions.DependencyInjection;
 using TBC.OpenAPI.SDK.Core.Extensions;
 using TBC.OpenAPI.SDK.OnlineMortgage.Interfaces;
-using TBC.OpenAPI.SDK.OnlineMortgage.Models.Requests;
 
 namespace TBC.OpenAPI.SDK.OnlineMortgage.Extensions
 {

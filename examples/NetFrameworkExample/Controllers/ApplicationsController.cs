@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
+﻿using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Mvc;
-using TBC.OpenAPI.SDK.OnlineMortgage.Models.Requests;
 using TBC.OpenAPI.SDK.Core;
 using TBC.OpenAPI.SDK.OnlineMortgage.Extensions;
+using TBC.OpenAPI.SDK.OnlineMortgage.Models.Requests;
 
 namespace NetFrameworkExample.Controllers
 {
     public class ApplicationsController : ApiController
     {
-
         public async Task<IHttpActionResult> InitiateOnlineMortgageLeads()
         {
             var OnlineMortgageClient = OpenApiClientFactory.Instance.GetOnlineMortgageClient();
